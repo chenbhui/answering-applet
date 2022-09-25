@@ -1,6 +1,12 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/Qualifying/index",
+			"style": {
+				// "navigationBarTitleText": "Qualifying"
+			}
+		},
+		{
 			"path": "pages/userdata/index",
 			"style": {
 				// "navigationBarTitleText": "userdata"
@@ -21,6 +27,6 @@
 	},
 	"usingComponents": {
 		// 引入echart
-		"ec-canvas": "../src/component/ec-canvas/ec-canvas"
+		// "ec-canvas": "../src/component/ec-canvas/ec-canvas"
 	}
 }

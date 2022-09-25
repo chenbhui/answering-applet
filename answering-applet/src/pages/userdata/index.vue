@@ -15,8 +15,9 @@
         </div>
       </div>
       <!-- 用户分析 -->
-      <div class="user-analysiss">
-        <ec-canvas canvas-id="echart-pie" ec="{{ec}}"></ec-canvas>
+      <div class="user-analysiss map-content">
+        <uni-ec-canvas class="uni-ec-canvas" id="uni-ec-canvas" ref="uni-ec-canvas" canvas-id="uni-ec-canvas" :ec="ec"
+          @inited="inited"></uni-ec-canvas>
       </div>
       <!-- 用户数据 -->
       <div class="user-table-data">
@@ -45,26 +46,103 @@
 </template>
 
 <script>
-
+import uniEcCanvas from '../../component/uni-ec-canvas/uni-ec-canvas.vue';
 export default {
+
   name: "userdata",
-  components: {},
   props: {},
   data() {
-    return {}
+    return {
+      ec: {
+        option: {
+          color: ['#67F9D8', '#FFE434', '#56A3F1', '#FF917C'],
+          radar: [
+            {
+              indicator: [
+                { text: '文艺' },
+                { text: '流行' },
+                { text: '娱乐' },
+                { text: '生活' },
+                { text: '理科' },
+                { text: '文科' },
+              ],
+              // radius: 120,//半径
+              startAngle: 90,
+              splitNumber: 4,
+              shape: 'circle',
+              axisName: {
+                formatter: '【{value}】',
+                color: '#428BD4'
+              },
+              splitArea: {
+                areaStyle: {
+                  color: ['#77EADF', '#26C3BE', '#64AFE9', '#428BD4'],
+                  shadowColor: 'rgba(0, 0, 0, 0.2)',
+                  shadowBlur: 10
+                }
+              },
+              axisLine: {
+                lineStyle: {
+                  color: 'rgba(211, 253, 250, 0.8)'
+                }
+              },
+              splitLine: {
+                lineStyle: {
+                  color: 'rgba(211, 253, 250, 0.8)'
+                }
+              }
+            },
+          ],
+          series: [
+            {
+              type: 'radar',
+              emphasis: {
+                lineStyle: {
+                  width: 4
+                }
+              },
+              data: [
+                {
+                  value: [100, 8, 0.4, -80, 2000, 2000],
+                  name: 'Data A'
+                },
+                {
+                  value: [60, 5, 0.3, -100, 1500, 2000],
+                  name: 'Data B',
+                  areaStyle: {
+                    color: 'rgba(255, 228, 52, 0.6)'
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  components: {
+    uniEcCanvas
+  },
+  created() {
+
   },
   mounted() {
-    const query = uni.createSelectorQuery().in(this);
-    query.select('.user-analysiss').boundingClientRect(data => {
-      console.log("得到布局位置信息" + JSON.stringify(data));
-      console.log("节点离页面顶部的距离为" + data.top);
-    }).exec(function (res) {
-      console.log(res[0]);
-    });
+    /*  const query = uni.createSelectorQuery().in(this);
+     query.select('.user-analysiss').boundingClientRect(data => {
+       console.log("得到布局位置信息" + JSON.stringify(data));
+       console.log("节点离页面顶部的距离为" + data.top);
+     }).exec(function (res) {
+       console.log(res[0]);
+     }); */
 
   },
   computed: {},
-  methods: {},
+  methods: {
+    inited(chart) {
+      console.log('图表初始化完毕')
+      console.log('chart实例', chart)
+    },
+  },
   watch: {},
 
   // 页面周期函数--监听页面加载
@@ -173,9 +251,12 @@ export default {
 .user-analysiss {
   width: 100%;
   height: 520rpx;
-  /* background: url('https://i.postimg.cc/HnQqctxD/user-analysis.png') no-repeat;
-  background-size: 100% 100%; */
-  background: #456;
+}
+
+.uni-ec-canvas {
+  width: 100%;
+  height: 520rpx;
+  display: block;
 }
 
 .user-table-row {
