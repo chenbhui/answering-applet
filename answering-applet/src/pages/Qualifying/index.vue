@@ -25,7 +25,7 @@
           </div>
         </div>
       </div>
-      <div class="qualifying-race">
+      <div class="qualifying-race" @click="toOtherPage('duelWar')">
         <div class="beginner">
           <div class="beginner-image-box image-box">
             <image class="beginner-image image-content" src="../../static/trophy3.png"></image>
@@ -73,7 +73,15 @@ export default {
     return {}
   },
   computed: {},
-  methods: {},
+  methods: {
+    // 页面跳转
+    toOtherPage(url) {
+      console.log(url);
+      uni.navigateTo({
+        url: `/pages/${url}/index`
+      });
+    },
+  },
   watch: {},
 
   // 页面周期函数--监听页面加载
