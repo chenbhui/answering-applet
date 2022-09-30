@@ -1,6 +1,18 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/luckDraw/index",
+			"style": {
+				"navigationBarTitleText": "幸运转盘"
+			}
+		},
+		{
+			"path": "pages/dailyChallenge/index",
+			"style": {
+				"navigationBarTitleText": "每日挑战"
+			}
+		},
+		{
 			"path": "pages/duelWar/index",
 			"style": {
 				"navigationBarTitleText": "对战"
