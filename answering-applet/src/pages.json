@@ -1,6 +1,36 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "头脑王者"
+			}
+		},
+		{
+			"path": "pages/shop/index",
+			"style": {
+				"navigationBarTitleText": "商店"
+			}
+		},
+		{
+			"path": "pages/goods/index",
+			"style": {
+				"navigationBarTitleText": "物品"
+			}
+		},
+		{
+			"path": "pages/friendFight/index",
+			"style": {
+				"navigationBarTitleText": "好友对战"
+			}
+		},
+		{
+			"path": "pages/rankingList/index",
+			"style": {
+				"navigationBarTitleText": "排行榜"
+			}
+		},
+		{
 			"path": "pages/luckDraw/index",
 			"style": {
 				"navigationBarTitleText": "幸运转盘"
@@ -19,28 +49,12 @@
 			}
 		},
 		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "头脑王者"
-			}
-		},
-		{
 			"path": "pages/Qualifying/index",
-			"style": {
-				// "navigationBarTitleText": "Qualifying"
-			}
+			"style": {}
 		},
 		{
 			"path": "pages/userdata/index",
-			"style": {
-				// "navigationBarTitleText": "userdata"
-			}
-		},
-		{
-			"path": "pages/rankingList/index",
-			"style": {
-				"navigationBarTitleText": "rankingList"
-			}
+			"style": {}
 		}
 	],
 	"globalStyle": {

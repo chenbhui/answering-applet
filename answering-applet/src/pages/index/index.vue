@@ -35,10 +35,10 @@
 				<div class="project-item qualifying" @click="toOtherPage('Qualifying')">
 					<text class="item-text">排位赛</text>
 				</div>
-				<div class="project-item ranking-list">
+				<div class="project-item ranking-list" @click="toOtherPage('rankingList')">
 					<text class="item-text item-text-right">排行榜</text>
 				</div>
-				<div class="project-item shop">
+				<div class="project-item shop" @click="toOtherPage('shop')">
 					<text class="item-text">商店</text>
 				</div>
 				<div class="project-item knowledge-upgrading">
@@ -47,12 +47,12 @@
 				<div class="project-item bank">
 					<text class="item-text">银行</text>
 				</div>
-				<div class="project-item good">
+				<div class="project-item good" @click="toOtherPage('goods')">
 					<text class="item-text">物品</text>
 				</div>
 			</div>
 			<div class="project-module-right">
-				<div class="project-item friend-fight">
+				<div class="project-item friend-fight" @click="toOtherPage('friendFight')">
 					<text class="item-text">好友对战</text>
 				</div>
 				<div class="project-item treasure" @click="moveCurtain('treasure')">
@@ -176,8 +176,8 @@ export default {
 		},
 		// 关闭幕布
 		moveCurtain(e) {
-			console.log(this.curtainShow);
-			console.log(e);
+			/* console.log(this.curtainShow);
+			console.log(e); */
 			this.curtainShow = !this.curtainShow;
 			if (e == 'treasure') {
 				this.treasureShow = true;
