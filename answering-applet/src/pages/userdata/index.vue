@@ -38,7 +38,7 @@
       <div class="share">
         <div class="share-content-top"></div>
         <div class="share-content-bottom">
-          <div class="share-text">分享到其他群 继续看排行</div>
+          <button class="share-text" open-type="share">分享到其他群 继续看排行</button>
         </div>
       </div>
     </div>
@@ -144,7 +144,16 @@ export default {
     },
   },
   watch: {},
-
+  onShareAppMessage(res) {
+    if (res.from === 'button') {// 来自页面内分享按钮
+      console.log(res.target)
+    }
+    return {
+      title: '测测你脑子里装了啥？',
+      path: 'pages/index/index',
+      imageUrl: 'https://i.postimg.cc/1z41f1QR/shareImg.jpg',
+    }
+  },
   // 页面周期函数--监听页面加载
   onLoad() { },
   // 页面周期函数--监听页面初次渲染完成
@@ -217,6 +226,8 @@ export default {
 
 .rate {
   display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 15rpx 65rpx 25rpx;
 }
 
@@ -292,6 +303,11 @@ export default {
   color: #79f9fa;
 }
 
+.share {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
 
 .share-content-top {
   width: 100%;
@@ -303,6 +319,8 @@ export default {
   width: 100%;
   height: 85rpx;
   background: #4e84e6;
+  position: relative;
+  top: -1rpx;
 }
 
 .share-content-bottom .share-text {
@@ -310,5 +328,11 @@ export default {
   letter-spacing: 3rpx;
   color: #fff;
   text-shadow: 1px 1px 1px #ccc;
+  background: transparent;
+  border: none;
+}
+
+button::after {
+  content: none;
 }
 </style>

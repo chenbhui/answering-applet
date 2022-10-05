@@ -1,76 +1,79 @@
 <template>
-	<view class="content" :style="curtainShow?'overflow:hidden':'overflow:auto'">
-		<!-- 个人中心 -->
-		<view class="personal-center">
-			<text class="username">Tomtu</text>
-			<view class="userimage-box">
-				<image class="userimage" src="/static/cbh.jpg"></image>
+	<view class="content">
+		<div class="children-box">
+			<!-- 个人中心 -->
+			<view class="personal-center">
+				<text class="username">Tomtu</text>
+				<view class="userimage-box">
+					<image class="userimage" src="/static/cbh.jpg"></image>
+				</view>
+				<div class="rate">
+					<div class="rate-text">Lv.2</div>
+					<div class="rate-pic-box">
+						<div class="rate-pic"></div>
+					</div>
+				</div>
+				<div class="gain">
+					<div class="coin">
+						<div>
+							<image class="coinimage" src="/static/icon.png"></image>
+						</div>
+						<div class="coin-num">260</div>
+					</div>
+					<div class="diamonds">
+						<div>
+							<image class="diamondsimage" src="/static/diamonds.png"></image>
+						</div>
+						<div class="diamonds-num">0</div>
+					</div>
+				</div>
+				<view class="person-data" @click="toOtherPage('userdata')"></view>
 			</view>
-			<div class="rate">
-				<div class="rate-text">Lv.2</div>
-				<div class="rate-pic-box">
-					<div class="rate-pic"></div>
-				</div>
-			</div>
-			<div class="gain">
-				<div class="coin">
-					<div>
-						<image class="coinimage" src="/static/icon.png"></image>
+			<!--下边功能模块 -->
+			<view class="project-module">
+				<div class="project-module-left">
+					<!-- 随即玩家pk -->
+					<div class="project-item qualifying" @click="toOtherPage('Qualifying')">
+						<text class="item-text">排位赛</text>
 					</div>
-					<div class="coin-num">260</div>
-				</div>
-				<div class="diamonds">
-					<div>
-						<image class="diamondsimage" src="/static/diamonds.png"></image>
+					<div class="project-item ranking-list" @click="toOtherPage('rankingList')">
+						<text class="item-text item-text-right">排行榜</text>
 					</div>
-					<div class="diamonds-num">0</div>
+					<div class="project-item shop" @click="toOtherPage('shop')">
+						<text class="item-text">商店</text>
+					</div>
+					<div class="project-item knowledge-upgrading">
+						<text class="item-text item-text-right">错题申诉</text>
+					</div>
+					<div class="project-item bank">
+						<text class="item-text">银行</text>
+					</div>
+					<div class="project-item good" @click="toOtherPage('goods')">
+						<text class="item-text">物品</text>
+					</div>
 				</div>
-			</div>
-			<view class="person-data" @click="toOtherPage('userdata')"></view>
-		</view>
-		<!--下边功能模块 -->
-		<view class="project-module">
-			<div class="project-module-left">
-				<!-- 随即玩家pk -->
-				<div class="project-item qualifying" @click="toOtherPage('Qualifying')">
-					<text class="item-text">排位赛</text>
+				<div class="project-module-right">
+					<div class="project-item friend-fight" @click="toOtherPage('friendFight')">
+						<text class="item-text">好友对战</text>
+					</div>
+					<div class="project-item treasure" @click="moveCurtain('treasure')">
+						<text class="item-text">每日宝箱</text>
+					</div>
+					<div class="project-item history-error">
+						<text class="item-text item-text-right">历史错题</text>
+					</div>
+					<div class="project-item setting" @click="moveCurtain('setting')">
+						<text class="item-text item-text-right">设置</text>
+					</div>
+					<div class="project-item more">
+						<text class="item-text item-text-right">敬请期待</text>
+					</div>
 				</div>
-				<div class="project-item ranking-list" @click="toOtherPage('rankingList')">
-					<text class="item-text item-text-right">排行榜</text>
-				</div>
-				<div class="project-item shop" @click="toOtherPage('shop')">
-					<text class="item-text">商店</text>
-				</div>
-				<div class="project-item knowledge-upgrading">
-					<text class="item-text item-text-right">错题申诉</text>
-				</div>
-				<div class="project-item bank">
-					<text class="item-text">银行</text>
-				</div>
-				<div class="project-item good" @click="toOtherPage('goods')">
-					<text class="item-text">物品</text>
-				</div>
-			</div>
-			<div class="project-module-right">
-				<div class="project-item friend-fight" @click="toOtherPage('friendFight')">
-					<text class="item-text">好友对战</text>
-				</div>
-				<div class="project-item treasure" @click="moveCurtain('treasure')">
-					<text class="item-text">每日宝箱</text>
-				</div>
-				<div class="project-item history-error">
-					<text class="item-text item-text-right">历史错题</text>
-				</div>
-				<div class="project-item setting" @click="moveCurtain('setting')">
-					<text class="item-text item-text-right">设置</text>
-				</div>
-				<div class="project-item more">
-					<text class="item-text item-text-right">敬请期待</text>
-				</div>
-			</div>
-		</view>
+			</view>
+		</div>
+
 		<!--弹出 -->
-		<div class="curtain" v-show="curtainShow">
+		<div class="curtain" v-if="curtainShow">
 			<div class="treasure-card" v-show="treasureShow">
 				<div class="treasure-icon">
 					<image class="treasureimage" src="/static/treasure2.png"></image>
@@ -122,7 +125,7 @@
 					<image src="/static/error.png" class="treasure-card-move-image"></image>
 				</div>
 			</div>
-			<div class="setting-card" v-show="settingShow">
+			<div class="setting-card" v-if="settingShow">
 				<div class="setting-icon">
 					<image class="settingimage" src="/static/setting.png"></image>
 				</div>
@@ -201,6 +204,19 @@ export default {
 	background: #cce8fe;
 	height: 100%;
 	position: relative;
+}
+
+.children-box {
+	width: 100%;
+	height: 100%;
+	overflow: scroll;
+}
+
+.children-box::-webkit-scrollbar {
+	/*滚动条整体样式*/
+	width: 0px;
+	/*高宽分别对应横竖滚动条的尺寸*/
+	height: 1px;
 }
 
 .personal-center {
@@ -407,36 +423,28 @@ export default {
 /*幕布 */
 .curtain {
 	position: absolute;
-	top: 0;
-	left: 0;
+	top: 50%;
+	left: 50%;
 	width: 100%;
-	height: 200%;
+	height: 100%;
 	background: rgba(0, 0, 0, .5);
 	z-index: 2;
+	transform: translate(-50%, -50%);
 }
 
-.hide {
-	display: none;
-}
-
-.show {
-	display: block;
-}
 
 .treasure-card,
 .setting-card {
-	position: relative;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	width: 680rpx;
 	height: 900rpx;
-	margin: 200rpx auto;
 	padding: 100rpx 0rpx;
 	background: #fff;
 	border-radius: 25rpx;
 	box-sizing: border-box;
-}
-
-.setting-card {
-	margin-top: 430px;
 }
 
 .treasure-icon,
